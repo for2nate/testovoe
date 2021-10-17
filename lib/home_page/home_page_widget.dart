@@ -17,7 +17,7 @@ class HomePageWidget extends StatefulWidget {
 class _HomePageWidgetState extends State<HomePageWidget> {
   TextEditingController textFieldSearchController;
   bool _loadingButton = false;
-  double ratingBarValue = ratingBarReviewsRecord.grade;
+  double ratingBarValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -215,8 +215,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ),
                                                     direction: Axis.horizontal,
                                                     initialRating:
-                                                        ratingBarReviewsRecord
-                                                            .grade,
+                                                        ratingBarValue ??=
+                                                            ratingBarReviewsRecord
+                                                                .grade,
                                                     unratedColor:
                                                         Color(0xFF9E9E9E),
                                                     itemCount: 5,

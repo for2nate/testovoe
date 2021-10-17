@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DoctorPageWidget extends StatefulWidget {
   DoctorPageWidget({
@@ -19,7 +18,6 @@ class DoctorPageWidget extends StatefulWidget {
 }
 
 class _DoctorPageWidgetState extends State<DoctorPageWidget> {
-  PageController pageViewController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -44,70 +42,69 @@ class _DoctorPageWidgetState extends State<DoctorPageWidget> {
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.tertiaryColor,
           body: SafeArea(
-            child: Container(
-              width: double.infinity,
-              height: 500,
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
-                    child: PageView(
-                      controller: pageViewController ??=
-                          PageController(initialPage: 0),
-                      scrollDirection: Axis.vertical,
-                      children: [
-                        Image.network(
-                          'https://picsum.photos/seed/309/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                        Image.network(
-                          'https://picsum.photos/seed/102/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                        Image.network(
-                          'https://picsum.photos/seed/777/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        )
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0, 1),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                      child: SmoothPageIndicator(
-                        controller: pageViewController ??=
-                            PageController(initialPage: 0),
-                        count: 3,
-                        axisDirection: Axis.vertical,
-                        onDotClicked: (i) {
-                          pageViewController.animateToPage(
-                            i,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease,
-                          );
-                        },
-                        effect: ExpandingDotsEffect(
-                          expansionFactor: 2,
-                          spacing: 8,
-                          radius: 16,
-                          dotWidth: 16,
-                          dotHeight: 16,
-                          dotColor: Color(0xFF9E9E9E),
-                          activeDotColor: Color(0xFF3F51B5),
-                          paintStyle: PaintingStyle.fill,
-                        ),
+            child: StreamBuilder<List<PostsRecord>>(
+              stream: queryPostsRecord(
+                queryBuilder: (postsRecord) =>
+                    postsRecord.orderBy('created_at'),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        color: FlutterFlowTheme.primaryColor,
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  );
+                }
+                List<PostsRecord> listViewPostsRecordList = snapshot.data;
+                return ListView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  itemCount: listViewPostsRecordList.length,
+                  itemBuilder: (context, listViewIndex) {
+                    final listViewPostsRecord =
+                        listViewPostsRecordList[listViewIndex];
+                    return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: Color(0xFFD3D3D3),
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFEEEEEE),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.network(
+                                listViewPostsRecord.gifUrl,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         );
