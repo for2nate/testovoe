@@ -5,10 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
-import 'schema/categories_record.dart';
-import 'schema/reviews_record.dart';
-import 'schema/schedules_record.dart';
-import 'schema/posts_record.dart';
+import 'schema/films_record.dart';
+import 'schema/shows_record.dart';
+import 'schema/games_record.dart';
+import 'schema/books_record.dart';
+import 'schema/affairs_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,10 +17,11 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
-export 'schema/categories_record.dart';
-export 'schema/reviews_record.dart';
-export 'schema/schedules_record.dart';
-export 'schema/posts_record.dart';
+export 'schema/films_record.dart';
+export 'schema/shows_record.dart';
+export 'schema/games_record.dart';
+export 'schema/books_record.dart';
+export 'schema/affairs_record.dart';
 
 Stream<List<UsersRecord>> queryUsersRecord(
         {Query Function(Query) queryBuilder,
@@ -28,32 +30,39 @@ Stream<List<UsersRecord>> queryUsersRecord(
     queryCollection(UsersRecord.collection, UsersRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Stream<List<CategoriesRecord>> queryCategoriesRecord(
+Stream<List<FilmsRecord>> queryFilmsRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollection(CategoriesRecord.collection, CategoriesRecord.serializer,
+    queryCollection(FilmsRecord.collection, FilmsRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Stream<List<ReviewsRecord>> queryReviewsRecord(
+Stream<List<ShowsRecord>> queryShowsRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollection(ReviewsRecord.collection, ReviewsRecord.serializer,
+    queryCollection(ShowsRecord.collection, ShowsRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Stream<List<SchedulesRecord>> querySchedulesRecord(
+Stream<List<GamesRecord>> queryGamesRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollection(SchedulesRecord.collection, SchedulesRecord.serializer,
+    queryCollection(GamesRecord.collection, GamesRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Stream<List<PostsRecord>> queryPostsRecord(
+Stream<List<BooksRecord>> queryBooksRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollection(PostsRecord.collection, PostsRecord.serializer,
+    queryCollection(BooksRecord.collection, BooksRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Stream<List<AffairsRecord>> queryAffairsRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(AffairsRecord.collection, AffairsRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

@@ -13,46 +13,26 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get email;
 
   @nullable
-  @BuiltValueField(wireName: 'display_name')
-  String get displayName;
-
-  @nullable
   @BuiltValueField(wireName: 'photo_url')
   String get photoUrl;
 
   @nullable
-  String get uid;
-
-  @nullable
-  @BuiltValueField(wireName: 'created_time')
-  DateTime get createdTime;
+  String get name;
 
   @nullable
   @BuiltValueField(wireName: 'phone_number')
   String get phoneNumber;
 
   @nullable
-  @BuiltValueField(wireName: 'about_me')
-  String get aboutMe;
+  @BuiltValueField(wireName: 'created_time')
+  DateTime get createdTime;
 
   @nullable
-  String get price;
+  String get uid;
 
   @nullable
-  String get type;
-
-  @nullable
-  DocumentReference get category;
-
-  @nullable
-  DocumentReference get grade;
-
-  @nullable
-  DocumentReference get schedule;
-
-  @nullable
-  @BuiltValueField(wireName: 'doctor_isFalse')
-  bool get doctorIsFalse;
+  @BuiltValueField(wireName: 'display_name')
+  String get displayName;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -60,14 +40,11 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
     ..email = ''
-    ..displayName = ''
     ..photoUrl = ''
-    ..uid = ''
+    ..name = ''
     ..phoneNumber = ''
-    ..aboutMe = ''
-    ..price = ''
-    ..type = ''
-    ..doctorIsFalse = false;
+    ..uid = ''
+    ..displayName = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -88,32 +65,20 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
 Map<String, dynamic> createUsersRecordData({
   String email,
-  String displayName,
   String photoUrl,
-  String uid,
-  DateTime createdTime,
+  String name,
   String phoneNumber,
-  String aboutMe,
-  String price,
-  String type,
-  DocumentReference category,
-  DocumentReference grade,
-  DocumentReference schedule,
-  bool doctorIsFalse,
+  DateTime createdTime,
+  String uid,
+  String displayName,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
         UsersRecord((u) => u
           ..email = email
-          ..displayName = displayName
           ..photoUrl = photoUrl
-          ..uid = uid
-          ..createdTime = createdTime
+          ..name = name
           ..phoneNumber = phoneNumber
-          ..aboutMe = aboutMe
-          ..price = price
-          ..type = type
-          ..category = category
-          ..grade = grade
-          ..schedule = schedule
-          ..doctorIsFalse = doctorIsFalse));
+          ..createdTime = createdTime
+          ..uid = uid
+          ..displayName = displayName));

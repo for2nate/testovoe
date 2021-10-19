@@ -2,9 +2,10 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_page/home_page_widget.dart';
+import '../main.dart';
 import '../registration_page/registration_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -59,7 +60,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                     'Войти',
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.title2.override(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Montserrat',
                     ),
                   ),
                 ),
@@ -161,7 +162,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                       height: 40,
                       color: FlutterFlowTheme.primaryColor,
                       textStyle: FlutterFlowTheme.subtitle2.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Montserrat',
                         color: Colors.white,
                       ),
                       borderSide: BorderSide(
@@ -199,7 +200,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HomePageWidget(),
+                                      builder: (context) =>
+                                          NavBarPage(initialPage: 'HomePage'),
                                     ),
                                     (r) => false,
                                   );
@@ -270,7 +272,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomePageWidget(),
+                                    builder: (context) =>
+                                        NavBarPage(initialPage: 'HomePage'),
                                   ),
                                   (r) => false,
                                 );
@@ -326,7 +329,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HomePageWidget(),
+                                      builder: (context) =>
+                                          NavBarPage(initialPage: 'HomePage'),
                                     ),
                                     (r) => false,
                                   );

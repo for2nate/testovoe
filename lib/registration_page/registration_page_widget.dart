@@ -1,11 +1,11 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_page/home_page_widget.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegistrationPageWidget extends StatefulWidget {
@@ -16,32 +16,28 @@ class RegistrationPageWidget extends StatefulWidget {
 }
 
 class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
-  String dropDownValue;
-  TextEditingController textFieldAboutMeController;
-  TextEditingController textFieldEmailController;
+  TextEditingController textFieldEmailController1;
   TextEditingController textFieldNameController;
+  TextEditingController textFieldEmailController2;
   TextEditingController textFieldPhoneController;
   TextEditingController textFieldPasswordController;
   bool textFieldPasswordVisibility;
   TextEditingController textFieldPasswordConfirmController;
   bool textFieldPasswordConfirmVisibility;
-  TextEditingController textFieldPriceController;
-  bool switchListTileValue;
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textFieldAboutMeController = TextEditingController();
-    textFieldEmailController = TextEditingController();
+    textFieldEmailController1 = TextEditingController();
     textFieldNameController = TextEditingController();
+    textFieldEmailController2 = TextEditingController();
     textFieldPhoneController = TextEditingController();
     textFieldPasswordController = TextEditingController();
     textFieldPasswordVisibility = false;
     textFieldPasswordConfirmController = TextEditingController();
     textFieldPasswordConfirmVisibility = false;
-    textFieldPriceController = TextEditingController();
   }
 
   @override
@@ -69,7 +65,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                 'Регистрация',
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.title3.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Montserrat',
                 ),
               ),
             ),
@@ -79,7 +75,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
               decoration: InputDecoration(
                 hintText: 'Name',
                 hintStyle: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Montserrat',
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -103,16 +99,16 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                 ),
               ),
               style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
+                fontFamily: 'Montserrat',
               ),
             ),
             TextFormField(
-              controller: textFieldEmailController,
+              controller: textFieldEmailController1,
               obscureText: false,
               decoration: InputDecoration(
-                hintText: 'Email',
+                hintText: 'Имя',
                 hintStyle: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Montserrat',
                   color: Colors.black,
                 ),
                 enabledBorder: UnderlineInputBorder(
@@ -137,7 +133,42 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                 ),
               ),
               style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
+                fontFamily: 'Montserrat',
+                color: Colors.black,
+              ),
+            ),
+            TextFormField(
+              controller: textFieldEmailController2,
+              obscureText: false,
+              decoration: InputDecoration(
+                hintText: 'Email',
+                hintStyle: FlutterFlowTheme.bodyText1.override(
+                  fontFamily: 'Montserrat',
+                  color: Colors.black,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(4.0),
+                    topRight: Radius.circular(4.0),
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(4.0),
+                    topRight: Radius.circular(4.0),
+                  ),
+                ),
+              ),
+              style: FlutterFlowTheme.bodyText1.override(
+                fontFamily: 'Montserrat',
                 color: Colors.black,
               ),
               keyboardType: TextInputType.emailAddress,
@@ -148,7 +179,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
               decoration: InputDecoration(
                 hintText: 'Phone number',
                 hintStyle: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Montserrat',
                   color: Colors.black,
                 ),
                 enabledBorder: UnderlineInputBorder(
@@ -173,7 +204,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                 ),
               ),
               style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
+                fontFamily: 'Montserrat',
                 color: Colors.black,
               ),
               keyboardType: TextInputType.phone,
@@ -184,7 +215,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
               decoration: InputDecoration(
                 hintText: 'Password',
                 hintStyle: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Montserrat',
                   color: Colors.black,
                 ),
                 enabledBorder: UnderlineInputBorder(
@@ -222,7 +253,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                 ),
               ),
               style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
+                fontFamily: 'Montserrat',
                 color: Colors.black,
               ),
             ),
@@ -232,7 +263,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
               decoration: InputDecoration(
                 hintText: 'Password Confirm',
                 hintStyle: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Montserrat',
                   color: Colors.black,
                 ),
                 enabledBorder: UnderlineInputBorder(
@@ -270,129 +301,9 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                 ),
               ),
               style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
+                fontFamily: 'Montserrat',
                 color: Colors.black,
               ),
-            ),
-            TextFormField(
-              controller: textFieldPriceController,
-              obscureText: false,
-              decoration: InputDecoration(
-                hintText: 'Price per hour',
-                hintStyle: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  color: Colors.black,
-                ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
-                  ),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
-                  ),
-                ),
-              ),
-              style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
-                color: Colors.black,
-              ),
-            ),
-            TextFormField(
-              controller: textFieldAboutMeController,
-              obscureText: false,
-              decoration: InputDecoration(
-                hintText: 'About Me',
-                hintStyle: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  color: Colors.black,
-                ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
-                  ),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
-                  ),
-                ),
-              ),
-              style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
-                color: Colors.black,
-              ),
-              maxLines: 4,
-            ),
-            StreamBuilder<List<CategoriesRecord>>(
-              stream: queryCategoriesRecord(),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: CircularProgressIndicator(
-                        color: FlutterFlowTheme.primaryColor,
-                      ),
-                    ),
-                  );
-                }
-                List<CategoriesRecord> dropDownCategoriesRecordList =
-                    snapshot.data;
-                return FlutterFlowDropDown(
-                  options: ['Option 1'].toList(),
-                  onChanged: (val) => setState(() => dropDownValue = val),
-                  width: 130,
-                  height: 40,
-                  textStyle: FlutterFlowTheme.bodyText1.override(
-                    fontFamily: 'Poppins',
-                    color: Colors.black,
-                  ),
-                  fillColor: Colors.white,
-                  elevation: 2,
-                  borderColor: Colors.black,
-                  borderWidth: 0,
-                  borderRadius: 1,
-                  margin: EdgeInsetsDirectional.fromSTEB(8, 4, 8, 4),
-                );
-              },
-            ),
-            SwitchListTile(
-              value: switchListTileValue ??= true,
-              onChanged: (newValue) =>
-                  setState(() => switchListTileValue = newValue),
-              title: Text(
-                'Вы доктор?',
-                style: FlutterFlowTheme.title3.override(
-                  fontFamily: 'Poppins',
-                ),
-              ),
-              tileColor: Color(0xFFF5F5F5),
-              dense: false,
-              controlAffinity: ListTileControlAffinity.trailing,
             ),
             FFButtonWidget(
               onPressed: () async {
@@ -412,7 +323,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
 
                   final user = await createAccountWithEmail(
                     context,
-                    textFieldEmailController.text,
+                    textFieldEmailController2.text,
                     textFieldPasswordController.text,
                   );
                   if (user == null) {
@@ -420,14 +331,9 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                   }
 
                   final usersCreateData = createUsersRecordData(
-                    email: textFieldEmailController.text,
+                    email: textFieldEmailController2.text,
                     displayName: textFieldNameController.text,
                     createdTime: getCurrentTimestamp,
-                    phoneNumber: textFieldPhoneController.text,
-                    aboutMe: textFieldAboutMeController.text,
-                    price: textFieldPriceController.text,
-                    doctorIsFalse: switchListTileValue,
-                    type: dropDownValue,
                   );
                   await UsersRecord.collection
                       .doc(user.uid)
@@ -436,7 +342,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                   await Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomePageWidget(),
+                      builder: (context) => NavBarPage(initialPage: 'HomePage'),
                     ),
                     (r) => false,
                   );
@@ -450,7 +356,7 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                 height: 48,
                 color: FlutterFlowTheme.primaryColor,
                 textStyle: FlutterFlowTheme.subtitle2.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Montserrat',
                   color: Colors.white,
                 ),
                 borderSide: BorderSide(

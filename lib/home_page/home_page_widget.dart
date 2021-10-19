@@ -1,11 +1,14 @@
-import '../backend/backend.dart';
-import '../doctor_page/doctor_page_widget.dart';
+import '../affairs_page/affairs_page_widget.dart';
+import '../books_page/books_page_widget.dart';
+import '../films_page/films_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '../games_page/games_page_widget.dart';
+import '../shows_page/shows_page_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePageWidget extends StatefulWidget {
   HomePageWidget({Key key}) : super(key: key);
@@ -15,295 +18,177 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  TextEditingController textFieldSearchController;
-  bool _loadingButton = false;
-  double ratingBarValue;
+  PageController pageViewController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    textFieldSearchController = TextEditingController();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF212121),
         automaticallyImplyLeading: false,
         title: Text(
-          'Главная',
+          'Home',
           style: FlutterFlowTheme.title3.override(
-            fontFamily: 'Poppins',
+            fontFamily: 'Montserrat',
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
           ),
         ),
         actions: [],
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
       ),
-      backgroundColor: Colors.white,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextFormField(
-            controller: textFieldSearchController,
-            obscureText: false,
-            decoration: InputDecoration(
-              hintText: 'Поиск',
-              hintStyle: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
-                color: Color(0xFFD3D3D3),
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Color(0xFFD3D3D3),
-                  width: 1,
-                ),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(4.0),
-                  topRight: Radius.circular(4.0),
-                ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Color(0xFFD3D3D3),
-                  width: 1,
-                ),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(4.0),
-                  topRight: Radius.circular(4.0),
-                ),
-              ),
-              prefixIcon: Icon(
-                Icons.search,
-                color: Color(0xFFD3D3D3),
-              ),
-            ),
-            style: FlutterFlowTheme.bodyText1.override(
-              fontFamily: 'Poppins',
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 15),
-              child: StreamBuilder<List<UsersRecord>>(
-                stream: queryUsersRecord(
-                  queryBuilder: (usersRecord) =>
-                      usersRecord.where('doctor_isFalse', isEqualTo: true),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          color: FlutterFlowTheme.primaryColor,
+      backgroundColor: Color(0xFF272727),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+              child: Container(
+                width: double.infinity,
+                height: 500,
+                child: Stack(
+                  children: [
+                    PageView(
+                      controller: pageViewController ??=
+                          PageController(initialPage: 0),
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FilmsPageWidget(),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              'assets/images/best-movies-1624472751.jpg',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ShowsPageWidget(),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              'assets/images/Best-TV-Shows-of-2019GQ-2019-120319.jpg',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => GamesPageWidget(),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              'assets/images/GOTY.jpg.cf.jpg',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BooksPageWidget(),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              'assets/images/Blog_MostPopularBooksof2016.jpg',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AffairsPageWidget(),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              'assets/images/dd047d1eb6675f3731853335be5f2a16_original.png',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0, 1),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                        child: SmoothPageIndicator(
+                          controller: pageViewController ??=
+                              PageController(initialPage: 0),
+                          count: 5,
+                          axisDirection: Axis.horizontal,
+                          onDotClicked: (i) {
+                            pageViewController.animateToPage(
+                              i,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.ease,
+                            );
+                          },
+                          effect: ExpandingDotsEffect(
+                            expansionFactor: 2,
+                            spacing: 8,
+                            radius: 16,
+                            dotWidth: 16,
+                            dotHeight: 16,
+                            dotColor: Color(0xFF9E9E9E),
+                            activeDotColor: Color(0xFFFF4E00),
+                            paintStyle: PaintingStyle.fill,
+                          ),
                         ),
                       ),
-                    );
-                  }
-                  List<UsersRecord> listViewUsersRecordList = snapshot.data;
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewUsersRecordList.length,
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewUsersRecord =
-                          listViewUsersRecordList[listViewIndex];
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: Colors.white,
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.network(
-                                    listViewUsersRecord.photoUrl,
-                                    width: 100,
-                                    height: 100,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 4, 8, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                'Dr. ${listViewUsersRecord.displayName}',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                ),
-                                              ),
-                                              Icon(
-                                                Icons.favorite_border,
-                                                color: Color(0xFFFF0000),
-                                                size: 24,
-                                              )
-                                            ],
-                                          ),
-                                          Text(
-                                            listViewUsersRecord.type,
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              StreamBuilder<ReviewsRecord>(
-                                                stream:
-                                                    ReviewsRecord.getDocument(
-                                                        listViewUsersRecord
-                                                            .grade),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50,
-                                                        height: 50,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          color:
-                                                              FlutterFlowTheme
-                                                                  .primaryColor,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  final ratingBarReviewsRecord =
-                                                      snapshot.data;
-                                                  return RatingBar.builder(
-                                                    onRatingUpdate:
-                                                        (newValue) => setState(
-                                                            () =>
-                                                                ratingBarValue =
-                                                                    newValue),
-                                                    itemBuilder:
-                                                        (context, index) =>
-                                                            Icon(
-                                                      Icons.star_rounded,
-                                                      color: FlutterFlowTheme
-                                                          .secondaryColor,
-                                                    ),
-                                                    direction: Axis.horizontal,
-                                                    initialRating:
-                                                        ratingBarValue ??=
-                                                            ratingBarReviewsRecord
-                                                                .grade,
-                                                    unratedColor:
-                                                        Color(0xFF9E9E9E),
-                                                    itemCount: 5,
-                                                    itemSize: 12,
-                                                    glowColor: FlutterFlowTheme
-                                                        .secondaryColor,
-                                                  );
-                                                },
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(4, 0, 0, 0),
-                                                child: Text(
-                                                  listViewUsersRecord.price,
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(-1, 0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                setState(() =>
-                                                    _loadingButton = true);
-                                                try {
-                                                  await Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          DoctorPageWidget(
-                                                        doctor:
-                                                            listViewUsersRecord
-                                                                .reference,
-                                                      ),
-                                                    ),
-                                                  );
-                                                } finally {
-                                                  setState(() =>
-                                                      _loadingButton = false);
-                                                }
-                                              },
-                                              text: 'Book now',
-                                              options: FFButtonOptions(
-                                                width: 130,
-                                                height: 28,
-                                                color: FlutterFlowTheme
-                                                    .primaryColor,
-                                                textStyle: FlutterFlowTheme
-                                                    .subtitle2
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: Colors.white,
-                                                  fontSize: 12,
-                                                ),
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1,
-                                                ),
-                                                borderRadius: 16,
-                                              ),
-                                              loading: _loadingButton,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
