@@ -1,8 +1,8 @@
 import '../backend/backend.dart';
-import '../films_page/films_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_youtube_player.dart';
+import '../games_page/games_page_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -61,7 +61,7 @@ class _CurrentGameWidgetState extends State<CurrentGameWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FilmsPageWidget(),
+                    builder: (context) => GamesPageWidget(),
                   ),
                 );
               },

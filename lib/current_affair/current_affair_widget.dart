@@ -1,5 +1,5 @@
+import '../affairs_page/affairs_page_widget.dart';
 import '../backend/backend.dart';
-import '../films_page/films_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -60,7 +60,7 @@ class _CurrentAffairWidgetState extends State<CurrentAffairWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FilmsPageWidget(),
+                    builder: (context) => AffairsPageWidget(),
                   ),
                 );
               },

@@ -87,9 +87,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 }
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
-  'FilmsPage': (data) async => FilmsPageWidget(
-        doctor: getParameter(data, 'doctor'),
-      ),
+  'FilmsPage': (data) async => FilmsPageWidget(),
   'AuthPage': (data) async => AuthPageWidget(),
   'RegistrationPage': (data) async => RegistrationPageWidget(),
   'Onboarding': (data) async => OnboardingWidget(),

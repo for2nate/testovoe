@@ -28,6 +28,28 @@ abstract class BooksRecord implements Built<BooksRecord, BooksRecordBuilder> {
   String get note;
 
   @nullable
+  String get email;
+
+  @nullable
+  @BuiltValueField(wireName: 'display_name')
+  String get displayName;
+
+  @nullable
+  @BuiltValueField(wireName: 'photo_url')
+  String get photoUrl;
+
+  @nullable
+  String get uid;
+
+  @nullable
+  @BuiltValueField(wireName: 'created_time')
+  DateTime get createdTime;
+
+  @nullable
+  @BuiltValueField(wireName: 'phone_number')
+  String get phoneNumber;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -37,7 +59,12 @@ abstract class BooksRecord implements Built<BooksRecord, BooksRecordBuilder> {
     ..description = ''
     ..image = ''
     ..done = false
-    ..note = '';
+    ..note = ''
+    ..email = ''
+    ..displayName = ''
+    ..photoUrl = ''
+    ..uid = ''
+    ..phoneNumber = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('books');
@@ -63,6 +90,12 @@ Map<String, dynamic> createBooksRecordData({
   String image,
   bool done,
   String note,
+  String email,
+  String displayName,
+  String photoUrl,
+  String uid,
+  DateTime createdTime,
+  String phoneNumber,
 }) =>
     serializers.toFirestore(
         BooksRecord.serializer,
@@ -72,4 +105,10 @@ Map<String, dynamic> createBooksRecordData({
           ..description = description
           ..image = image
           ..done = done
-          ..note = note));
+          ..note = note
+          ..email = email
+          ..displayName = displayName
+          ..photoUrl = photoUrl
+          ..uid = uid
+          ..createdTime = createdTime
+          ..phoneNumber = phoneNumber));

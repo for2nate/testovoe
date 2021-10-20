@@ -1,5 +1,5 @@
 import '../backend/backend.dart';
-import '../films_page/films_page_widget.dart';
+import '../books_page/books_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -60,7 +60,7 @@ class _CurrentBookWidgetState extends State<CurrentBookWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FilmsPageWidget(),
+                    builder: (context) => BooksPageWidget(),
                   ),
                 );
               },
